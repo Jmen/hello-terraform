@@ -16,3 +16,8 @@ module "bucket-2" {
   name = "jaimen-s3-${var.environment}-2"
   source = "./modules/s3"
 }
+
+module "hello-queue" {
+  source = "terraform-aws-modules/sqs/aws"
+  name = "hello-queue"
+}
