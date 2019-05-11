@@ -18,7 +18,7 @@ steps:
   - label: Apply Dev
     commands:
       - buildkite-agent artifact download "dev/terraform.tfplan" "dev"
-      - buildkite-agent artifact download "lambda.zip" .
+      - buildkite-agent artifact download "lambda.zip" . --step "Plan Dev"
       - bash ./tg-apply.sh dev
 
   - wait
@@ -26,5 +26,5 @@ steps:
   - label: Apply Live
     commands: 
       - buildkite-agent artifact download "live/terraform.tfplan" "live"
-      - buildkite-agent artifact download "lambda.zip" .
+      - buildkite-agent artifact download "lambda.zip" . --step "Plan Live"
       - bash ./tg-apply.sh live
