@@ -14,18 +14,3 @@ module "bucket-1" {
   source = "./modules/s3"
   name = "jaimen-s3-${var.environment}-1"
 }
-
-module "bucket-2" {
-  source = "./modules/s3"
-  name = "jaimen-s3-${var.environment}-2"
-}
-
-module "hello-queue-1" {
-  source = "terraform-aws-modules/sqs/aws"
-  name = "hello-queue-${var.environment}-1"
-}
-
-module "hello-queue-2" {
-  source = "terraform-aws-modules/sqs/aws"
-  name = "hello-queue-${var.environment}-2"
-}
