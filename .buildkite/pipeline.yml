@@ -1,0 +1,12 @@
+steps:
+  - label: Plan Dev
+    command: bash ./tg-plan.sh dev
+    retry:
+      manual:
+        permit_on_passed: true
+
+  - label: Plan Live
+    command: bash ./tg-plan.sh live
+    retry:
+      manual:
+        permit_on_passed: true
