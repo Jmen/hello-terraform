@@ -19,7 +19,7 @@ data "archive_file" "zip" {
 variable "environment" {}
 
 resource "aws_lambda_function" "lambda" {
-  function_name = "hello_lambda"
+  function_name = "hello-terraform-lambda-${var.environment}"
 
   filename         = "${data.archive_file.zip.output_path}"
   source_code_hash = "${data.archive_file.zip.output_base64sha256}"
@@ -44,6 +44,6 @@ data "aws_iam_policy_document" "policy" {
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
-  name               = "iam_for_lambda"
+  name               = "hello-terraform-lambda-${var.environment}-role"
   assume_role_policy = "${data.aws_iam_policy_document.policy.json}"
 }
