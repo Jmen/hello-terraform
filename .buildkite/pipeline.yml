@@ -22,5 +22,5 @@ steps:
 
   - label: Apply Live
     commands: 
-      - buildkite-agent artifact download "dev/terraform.tfplan" "live"
+      - buildkite-agent artifact download "live/terraform.tfplan" "live"
       - bash ./tg-apply.sh live
