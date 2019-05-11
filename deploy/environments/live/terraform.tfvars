@@ -1,6 +1,6 @@
 terragrunt = {
     terraform {
-        source = ".."
+        source = "../.."
 
         extra_arguments "custom_vars" {
         commands = [
@@ -16,8 +16,8 @@ terragrunt = {
     remote_state {
         backend = "s3"
 
-        config {
-            bucket         = "hello-terraform-dev-tfstate"
+        config {    
+            bucket         = "hello-terraform-live-tfstate"
             key            = "terraform.tfstate"
             region         = "us-east-1"
             encrypt        = true
@@ -26,5 +26,5 @@ terragrunt = {
     }
 }
 
-environment = "dev"
-count = 2
+environment = "live"
+count = 3

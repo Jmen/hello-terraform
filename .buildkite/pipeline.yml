@@ -1,30 +1,30 @@
 steps:
   - label: Plan Dev
     commands:
-      - bash ./tg-plan.sh dev
+      - bash ./deploy/scripts/plan.sh dev
     artifact_paths:
-      - "dev/terraform.tfplan"
+      - "deploy/environments/dev/terraform.tfplan"
       - "lambda.zip"
 
   - label: Plan Live
     commands: 
-      - bash ./tg-plan.sh live
+      - bash ./deploy/scripts/plan.sh live
     artifact_paths:
-      - "live/terraform.tfplan"
+      - "deploy/environments/live/terraform.tfplan"
       - "lambda.zip"
 
   - wait
 
   - label: Apply Dev
     commands:
-      - buildkite-agent artifact download "dev/terraform.tfplan" "dev"
+      - buildkite-agent artifact download "deploy/environments/dev/terraform.tfplan" "deploy/environments/dev"
       - buildkite-agent artifact download "lambda.zip" . --step "Plan Dev"
-      - bash ./tg-apply.sh dev
+      - bash ./apply.sh dev
 
   - wait
 
   - label: Apply Live
     commands: 
-      - buildkite-agent artifact download "live/terraform.tfplan" "live"
+      - buildkite-agent artifact download "deploy/environments/live/terraform.tfplan" "deploy/environments/live"
       - buildkite-agent artifact download "lambda.zip" . --step "Plan Live"
-      - bash ./tg-apply.sh live
+      - bash ./apply.sh live
