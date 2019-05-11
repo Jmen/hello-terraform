@@ -3,26 +3,24 @@ steps:
     commands:
       - bash ./tg-plan.sh dev
     artifact_paths:
-      - "dev/.terragrunt-cache/**/*"
       - "dev/terraform.tfplan"
 
   - label: Plan Live
     commands: 
       - bash ./tg-plan.sh live
     artifact_paths:
-      - "live/.terragrunt-cache/**/*"
       - "live/terraform.tfplan"
 
   - wait
 
   - label: Apply Dev
     commands:
-      - buildkite-agent artifact download "dev/**/*" "dev"
+      - buildkite-agent artifact download "dev/terraform.tfplan" "dev"
       - bash ./tg-apply.sh dev
 
   - wait
 
   - label: Apply Live
     commands: 
-      - buildkite-agent artifact download "live/**/*" "live"
+      - buildkite-agent artifact download "dev/terraform.tfplan" "live"
       - bash ./tg-apply.sh live
