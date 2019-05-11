@@ -19,7 +19,7 @@ steps:
     commands:
       - buildkite-agent artifact download "deploy/environments/dev/terraform.tfplan" "deploy/environments/dev"
       - buildkite-agent artifact download "lambda.zip" . --step "Plan Dev"
-      - bash ./apply.sh dev
+      - bash ./deploy/scripts/apply.sh dev
 
   - wait
 
@@ -27,4 +27,4 @@ steps:
     commands: 
       - buildkite-agent artifact download "deploy/environments/live/terraform.tfplan" "deploy/environments/live"
       - buildkite-agent artifact download "lambda.zip" . --step "Plan Live"
-      - bash ./apply.sh live
+      - bash ./deploy/scripts/apply.sh live
