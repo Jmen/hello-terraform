@@ -13,7 +13,7 @@ provider "archive" {}
 data "archive_file" "zip" {
   type        = "zip"
   source_file = "index.js"
-  output_path = "lambda.zip"
+  output_path = "../../../../lambda.zip"
 }
 
 variable "environment" {}
