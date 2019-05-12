@@ -1,3 +1,12 @@
-exports.handler = async (event) => {
-    return {statusCode: 200, body: 'Hello from Lambda!'};
-  };
+'use strict'
+
+exports.handler = function(event, context, callback) {
+  var response = {
+    statusCode: 200,
+    headers: {
+      'Content-Type': 'text/html; charset=utf-8'
+    },
+    body: '<p>Hello world!</p>'
+  }
+  callback(null, response)
+}
