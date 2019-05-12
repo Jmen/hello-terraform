@@ -29,13 +29,9 @@ resource "aws_iam_role" "lambda_exec" {
       "Action": [
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
-        "logs:PutLogEvents",
-        "logs:PutMetricFilter",
-        "logs:PutRetentionPolicy"
+        "logs:PutLogEvents"
       ],
-      "Resource": [
-        "*"
-      ]
+      "Resource": "*"
     }
   ]
 }
