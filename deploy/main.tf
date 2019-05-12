@@ -26,10 +26,10 @@ module "hello_terraform_lambda" {
   source_code_hash  = "${data.archive_file.zip.output_base64sha256}"
 }
 
-# module "hello_terraform_api_gateway" {
-#   source            = "./modules/api-gateway"
+module "hello_terraform_api_gateway" {
+  source            = "./modules/api-gateway"
 
-#   name              = "hello-terraform-${var.environment}"
-#   lambda_arn        = "${module.hello_terraform_lambda.lambda_arn}"
-#   lambda_invoke_arn = "${module.hello_terraform_lambda.lambda_invoke_arn}"
-# }
+  name              = "hello-terraform-${var.environment}"
+  lambda_arn        = "${module.hello_terraform_lambda.lambda_arn}"
+  lambda_invoke_arn = "${module.hello_terraform_lambda.lambda_invoke_arn}"
+}
