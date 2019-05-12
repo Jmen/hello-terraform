@@ -30,7 +30,6 @@ resource "aws_lambda_permission" "lambda_permission" {
 
 resource "aws_api_gateway_deployment" "deployment" {
     depends_on = [
-        "aws_api_gateway_integration.proxy_integration",
         "aws_api_gateway_integration.root_integration"
     ]
 
