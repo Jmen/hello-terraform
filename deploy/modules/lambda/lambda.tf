@@ -23,6 +23,19 @@ resource "aws_iam_role" "lambda_exec" {
       },
       "Effect": "Allow",
       "Sid": ""
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:PutMetricFilter",
+        "logs:PutRetentionPolicy"
+      ],
+      "Resource": [
+        "*"
+      ]
     }
   ]
 }
