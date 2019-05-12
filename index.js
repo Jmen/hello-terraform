@@ -1,6 +1,10 @@
 'use strict'
 
 exports.handler = function(event, context, callback) {
+
+  console.log(event);
+  console.log(context);
+
   var response = {
     statusCode: 200,
     headers: {
