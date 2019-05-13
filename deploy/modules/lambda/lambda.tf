@@ -4,28 +4,52 @@ resource "aws_lambda_function" "lambda" {
   filename         = "${var.filename}"
   source_code_hash = "${var.source_code_hash}"
 
-  role    = "${aws_iam_role.lambda_exec.arn}"
+  role    = "${aws_iam_role.lambda_role.arn}"
   handler = "index.handler"
   runtime = "nodejs8.10"
 }
 
-resource "aws_iam_role" "lambda_exec" {
-  name = "${var.name}-role"
+resource "aws_iam_role_policy_attachment" "role_policy_attachment" {
+    role       = "${aws_iam_role.lambda_role.name}"
+    policy_arn = "${aws_iam_policy.lambda_policy.arn}"
+}
 
-  assume_role_policy = <<EOF
-{
+resource "aws_iam_role" "lambda_role" {
+        name = "${var.name}-role"
+        assume_role_policy = <<EOF
+{   
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
       "Effect": "Allow",
-      "Action": [
-        "logs:CreateLogGroup",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents"
-      ],
-      "Resource": "arn:aws:logs:*:*:log-group:/aws/lambda/${var.name}:*"
+      "Sid": ""
     }
   ]
+}
+EOF
+}
+
+resource "aws_iam_policy" "lambda_policy" {
+    name = "${var.name}-policy"
+    path = "/"
+    policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:log-group:/aws/lambda/${var.name}:*"
+        }
+    ]
 }
 EOF
 }
