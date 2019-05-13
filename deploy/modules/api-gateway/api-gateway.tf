@@ -53,6 +53,7 @@ resource "aws_lambda_permission" "lambda_permission" {
   source_arn = "${aws_api_gateway_deployment.deployment.execution_arn}/*/*"
 }
 
+
 resource "aws_api_gateway_deployment" "deployment" {
     depends_on = [
         "aws_api_gateway_integration.root_integration"
