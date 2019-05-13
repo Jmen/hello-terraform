@@ -4,7 +4,7 @@ resource "aws_lambda_function" "lambda" {
   filename         = "${var.filename}"
   source_code_hash = "${var.source_code_hash}"
 
-  role    = "${aws_iam_role.lambda_exec.arn}"
+  role    = "${aws_iam_role.lambda_logging.arn}"
   handler = "index.handler"
   runtime = "nodejs8.10"
 }
@@ -23,6 +23,28 @@ resource "aws_iam_role" "lambda_exec" {
       },
       "Effect": "Allow",
       "Sid": ""
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_policy" "lambda_logging" {
+  name = "${var.name}-role-logging"
+  path = "/"
+  description = "IAM policy for logging from a lambda"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:*:*:*",
+      "Effect": "Allow"
     }
   ]
 }
