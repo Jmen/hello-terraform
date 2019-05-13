@@ -22,6 +22,8 @@ module "hello_terraform_lambda" {
   source            = "./modules/lambda"
   
   name              = "hello-terraform-${var.environment}"
+  runtime           = "nodejs8.10"
+  handler           = "index.handler"
   filename          = "${data.archive_file.zip.output_path}"
   source_code_hash  = "${data.archive_file.zip.output_base64sha256}"
 }
@@ -32,4 +34,14 @@ module "hello_terraform_api_gateway" {
   name              = "hello-terraform-${var.environment}"
   lambda_arn        = "${module.hello_terraform_lambda.lambda_arn}"
   lambda_invoke_arn = "${module.hello_terraform_lambda.lambda_invoke_arn}"
+}
+
+module "hello_terraform_dotnet_lambda" {
+  source            = "./modules/lambda"
+  
+  name              = "hello-terraform-dotnet-${var.environment}"
+  runtime           = "dotnetcore2.1"
+  handler           = "HelloDotnetTerraform::Function::FunctionHandler"
+  filename          = "../../../../../../dotnet-lambda.zip"
+  source_code_hash  = "${base64sha256(file("../../../../../../dotnet-lambda.zip"))}"
 }

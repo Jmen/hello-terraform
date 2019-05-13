@@ -5,8 +5,8 @@ resource "aws_lambda_function" "lambda" {
   source_code_hash = "${var.source_code_hash}"
 
   role    = "${aws_iam_role.lambda_role.arn}"
-  handler = "index.handler"
-  runtime = "nodejs8.10"
+  handler = "${var.handler}"
+  runtime = "${var.runtime}"
 }
 
 resource "aws_iam_role_policy_attachment" "role_policy_attachment" {
