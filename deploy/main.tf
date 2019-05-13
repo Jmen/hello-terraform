@@ -26,14 +26,6 @@ module "hello_terraform_lambda" {
   source_code_hash  = "${data.archive_file.zip.output_base64sha256}"
 }
 
-module "hello_terraform_lambda-2" {
-  source            = "./modules/lambda"
-  
-  name              = "hello-terraform-${var.environment}-2"
-  filename          = "${data.archive_file.zip.output_path}"
-  source_code_hash  = "${data.archive_file.zip.output_base64sha256}"
-}
-
 module "hello_terraform_api_gateway" {
   source            = "./modules/api-gateway"
 
