@@ -60,4 +60,6 @@ resource "aws_api_gateway_deployment" "deployment" {
 
     rest_api_id = "${aws_api_gateway_rest_api.api.id}"
     stage_name  = "stage"
+    stage_description = "${var.name} ${var.lambda_arn} ${var.lambda_invoke_arn} ${md5(file("./modules/api-gateway/api-gateway.tf"))}"
 }
+
