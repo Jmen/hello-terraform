@@ -7,6 +7,7 @@ resource "aws_lambda_function" "lambda" {
   role    = "${aws_iam_role.lambda_role.arn}"
   handler = "${var.handler}"
   runtime = "${var.runtime}"
+  timeout = "${var.timeout}"
 }
 
 resource "aws_iam_role_policy_attachment" "role_policy_attachment" {

@@ -8,3 +8,6 @@ variable "runtime" {}
 
 variable "handler" {}
 
+variable "timeout" {
+    default = 60
+}
