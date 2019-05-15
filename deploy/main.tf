@@ -49,7 +49,7 @@ module "hello_terraform_dotnet_lambda" {
 module "hello_terraform_api_gateway_dotnet" {
   source            = "./modules/api-gateway"
 
-  name              = "hello-terraform-${var.environment}"
+  name              = "hello-terraform-${var.environment}-dotnet"
   lambda_arn        = "${module.hello_terraform_dotnet_lambda.lambda_arn}"
   lambda_invoke_arn = "${module.hello_terraform_dotnet_lambda.lambda_invoke_arn}"
 }
