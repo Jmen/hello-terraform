@@ -15,7 +15,7 @@ module "hello_terraform_dotnet_lambda" {
   
   name              = "hello-terraform-dotnet-${var.environment}"
   runtime           = "dotnetcore2.1"
-  handler           = "HelloDotnetTerraform::HelloDotnetTerraform.Function::FunctionHandler"
+  handler           = "HelloTerraformDotNetCore::HelloTerraformDotNetCore.Function::FunctionHandler"
   filename          = "../../../../../../output/lambda.zip"
   source_code_hash  = "${base64sha256(file("../../../../../../output/lambda.zip"))}"
 }

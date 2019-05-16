@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 
 namespace HelloTerraformDotNetCore.ConsoleTester
@@ -24,7 +26,13 @@ namespace HelloTerraformDotNetCore.ConsoleTester
         {
             var func = new Function();
 
-            func.FunctionHandler("hello", new FakeLambdaContext());
+            var fakeLambdaContext = new FakeLambdaContext();
+            
+            var result = func.FunctionHandler(new APIGatewayProxyRequest(), fakeLambdaContext);
+            
+            Console.WriteLine(string.Join(',', result.Headers.Select(x => $"{x.Key}={x.Value}")));
+            Console.WriteLine(result.StatusCode);
+            Console.WriteLine(result.Body);
         }
     }
 }

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -17,9 +19,25 @@ namespace HelloTerraformDotNetCore
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public string FunctionHandler(string input, ILambdaContext context)
+        public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            return input?.ToUpper();
+            var response = new APIGatewayProxyResponse
+            {
+                StatusCode = (int)HttpStatusCode.OK,
+                Body = @"
+                <html>
+                <head>
+                </head>
+                <body>
+                    <h1>Hello From Lambda</h1>
+                    <h5>Written in C#</h5>
+                    <h5>Deployed by Terraform</h5>
+                </body>
+                </html>",
+                Headers = new Dictionary<string, string> { { "Content-Type", "text/html" } }
+            };
+
+            return response;
         }
     }
 }
