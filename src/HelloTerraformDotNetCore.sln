@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloTerraformDotNetCore", "HelloTerraformDotNetCore\\HelloTerraformDotNetCore.csproj", "{BC0A3597-63DB-46F9-BE7E-016E3A471001}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloTerraformDotNetCore.ConsoleTester", "HelloTerraformDotNetCore.ConsoleTester\HelloTerraformDotNetCore.ConsoleTester.csproj", "{A91B0055-C7F5-47F1-A2A3-68F683130800}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC0A3597-63DB-46F9-BE7E-016E3A471001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC0A3597-63DB-46F9-BE7E-016E3A471001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC0A3597-63DB-46F9-BE7E-016E3A471001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC0A3597-63DB-46F9-BE7E-016E3A471001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A91B0055-C7F5-47F1-A2A3-68F683130800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A91B0055-C7F5-47F1-A2A3-68F683130800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A91B0055-C7F5-47F1-A2A3-68F683130800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A91B0055-C7F5-47F1-A2A3-68F683130800}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

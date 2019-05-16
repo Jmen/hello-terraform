@@ -7,3 +7,5 @@
 *.tfplan
 
 .terragrunt-cache
+**/bin/*
+**/obj/*
