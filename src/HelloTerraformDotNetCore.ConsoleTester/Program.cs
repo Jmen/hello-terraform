@@ -5,8 +5,13 @@ using Amazon.Lambda.Core;
 
 namespace HelloTerraformDotNetCore.ConsoleTester
 {
-    class FakeLambdaContext : ILambdaContext
+    internal class FakeLambdaContext : ILambdaContext
     {
+        public FakeLambdaContext()
+        {
+            Logger = new MyLogger();
+        }
+        
         public string AwsRequestId { get; }
         public IClientContext ClientContext { get; }
         public string FunctionName { get; }
@@ -19,16 +24,28 @@ namespace HelloTerraformDotNetCore.ConsoleTester
         public int MemoryLimitInMB { get; }
         public TimeSpan RemainingTime { get; }
     }
-    
-    class Program
+
+
+    internal class MyLogger : ILambdaLogger
     {
-        static void Main(string[] args)
+        public void Log(string message)
+        {
+            LambdaLogger.Log(message);
+        }
+
+        public void LogLine(string message)
+        {
+            LambdaLogger.Log(message);
+        }
+    }
+
+    internal static class Program
+    {
+        private static void Main(string[] args)
         {
             var func = new Function();
-
-            var fakeLambdaContext = new FakeLambdaContext();
             
-            var result = func.FunctionHandler(new APIGatewayProxyRequest(), fakeLambdaContext);
+            var result = func.FunctionHandler(new APIGatewayProxyRequest(), new FakeLambdaContext());
             
             Console.WriteLine(string.Join(',', result.Headers.Select(x => $"{x.Key}={x.Value}")));
             Console.WriteLine(result.StatusCode);
