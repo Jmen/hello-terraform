@@ -14,4 +14,6 @@ jobs:
       with:
         dotnet-version: 2.2.108
     - name: Build with dotnet
-      run: ./deploy/scripts/build.sh
+      run: |
+        dotnet tool install -g Amazon.Lambda.Tools 
+        ./deploy/scripts/build.sh
